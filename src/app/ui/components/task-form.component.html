@@ -1,0 +1,18 @@
+<form (ngSubmit)="onSubmit()">
+
+  <input
+    [(ngModel)]="titulo"
+    name="titulo"
+    placeholder="Título"
+    required
+  >
+
+  <input
+    [(ngModel)]="descripcion"
+    name="descripcion"
+    placeholder="Descripción"
+  >
+
+  <button type="submit">Agregar</button>
+
+</form>

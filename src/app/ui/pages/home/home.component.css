@@ -1,0 +1,102 @@
+/* Contenedor main centrado */
+.container {
+  max-width: 650px;
+  margin: 60px auto; /* centra en la pantalla */
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Título */
+h1 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+/* Contenedor del texto */
+.task-text {
+  display: flex;
+  flex-direction: column;
+  max-width: 250px; 
+}
+
+/* Descripción recortada */
+.description {
+  font-size: 13px;
+  color: #666;
+  white-space: nowrap;      
+  overflow: hidden;          
+  text-overflow: ellipsis;   /* agrega los "..." */
+}
+
+/* Formulario */
+form {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* Inputs */
+input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+/* Botón agregar */
+button {
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background-color: #6c8cff;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+/* Hover */
+button:hover {
+  background-color: #5a74d6;
+}
+
+/* Lista de tareas */
+.task-item {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  padding: 12px;
+  border-radius: 10px;
+  background-color: #f8f9fb;
+  border: 1px solid #eee;
+  margin-top: 10px;
+}
+
+/* Texto */
+.task-item span {
+  font-size: 14px;
+}
+
+/* Tarea completada */
+.task-item span.completed {
+  text-decoration: line-through;
+  color: #999;
+}
+
+/* Botón completar */
+.task-item button:first-of-type {
+  background-color: #a0d8b3;
+}
+
+/* Botón eliminar */
+.task-item button:last-of-type {
+  background-color: #f5a3a3;
+}
+
+/* Hover botones secundarios */
+.task-item button:hover {
+  opacity: 0.85;
+}
