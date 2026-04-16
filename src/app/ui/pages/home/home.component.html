@@ -1,33 +1,18 @@
 <div class="container">
 
-  <h1>Lista de Tareas</h1>
+  <h1>Mis tareas</h1>
 
-  <form #form="ngForm" (ngSubmit)="agregar(titulo.value, descripcion.value)">
-    
-    <input #titulo placeholder="Título" required>
-    <input #descripcion placeholder="Descripción">
+  <!-- Formulario -->
+  <app-task-form
+    (agregar)="agregarTarea($event)">
+  </app-task-form>
 
-    <button type="submit">Agregar</button>
-  </form>
 
-  <div *ngFor="let tarea of tareas" class="task-item">
-
-    <span [style.textDecoration]="tarea.completada ? 'line-through' : 'none'">
-      {{ tarea.titulo }}
-    </span>
-
-    <span class="description">
-      {{ tarea.descripcion }}
-    </span>
-
-    <button (click)="toggle(tarea.id)">
-      {{ tarea.completada ? 'Deshacer' : 'Completar' }}
-    </button>
-
-    <button (click)="eliminar(tarea.id)">
-      Eliminar
-    </button>
-
-  </div>
+  <!-- Lista de tareas -->
+  <app-task-list
+    [tareas]="taskService.getTareas()"
+    (toggle)="toggleTarea($event)"
+    (eliminar)="eliminarTarea($event)">
+  </app-task-list>
 
 </div>

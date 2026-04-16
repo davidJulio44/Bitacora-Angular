@@ -1,0 +1,35 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+  <!-- Input de título -->
+  <input
+    type="text"
+    formControlName="titulo"
+    placeholder="Título de la tarea"
+  >
+
+  <!-- Error si está vacío -->
+  <small
+    class="error"
+    *ngIf="form.get('titulo')?.hasError('required') && form.get('titulo')?.touched"
+  >
+    El título es obligatorio
+  </small>
+
+  <!-- Error si es demasiado corto -->
+  <small
+    class="error"
+    *ngIf="form.get('titulo')?.hasError('minlength') && form.get('titulo')?.touched"
+  >
+    El título debe tener al menos 3 caracteres
+  </small>
+
+  <!-- Input de descripción -->
+  <textarea
+    formControlName="descripcion"
+    placeholder="Descripción"
+  ></textarea>
+
+  <button type="submit">
+    Agregar
+  </button>
+</form>

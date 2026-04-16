@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { HomeComponent } from './ui/pages/home/home.component.js';
+import {RouterOutlet} from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [HomeComponent],
-  template: `<app-home></app-home>`
+
+  imports: [RouterOutlet], 
+
+  template: `<router-outlet></router-outlet>` // el router-outlet es un marcador de posición para las rutas hijas
 })
 export class App {}

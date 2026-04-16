@@ -1,38 +1,41 @@
 import { Injectable } from '@angular/core';
-import { Task } from '../domain/task.model.js';
-import { TaskRepository } from '../infrastructure/task.repository.js';
+import { Task } from '../domain/task.model';
 
 @Injectable({
-  providedIn: 'root' // maneja la inyección de dependecias
+  providedIn: 'root'
 })
 export class TaskService {
 
-  private repo = new TaskRepository(); // conexión a datos
+  // estado interno de tareas
+  private tareas: Task[] = [];
 
-  obtenerTodas(): Task[] {
-    return this.repo.obtenerTareas();
+  // obtener tareas
+  getTareas(): Task[] {
+    return this.tareas;
   }
 
-  agregar(titulo: string, descripcion: string): void {
-    if (!titulo) {
-      throw new Error('El título es obligatorio');
-    }
+  // agregar tarea
+  agregar(tarea: Omit<Task, 'id' | 'completada'>) {
 
-    const tarea: Task = {
+    const nueva: Task = {
       id: Date.now(),
-      titulo,
-      descripcion,
+      titulo: tarea.titulo,
+      descripcion: tarea.descripcion,
       completada: false
     };
 
-    this.repo.guardar(tarea);
+    this.tareas = [...this.tareas, nueva];
   }
 
-  eliminar(id: number): void {
-    this.repo.eliminar(id);
+  // toggle
+  toggle(id: number) {
+    this.tareas = this.tareas.map(t =>
+      t.id === id ? { ...t, completada: !t.completada } : t
+    );
   }
 
-  toggle(id: number): void {
-    this.repo.toggle(id);
+  // eliminar
+  eliminar(id: number) {
+    this.tareas = this.tareas.filter(t => t.id !== id);
   }
 }
