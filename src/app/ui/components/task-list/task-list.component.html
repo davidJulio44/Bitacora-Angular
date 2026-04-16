@@ -1,0 +1,7 @@
+<!-- Recorre todas las tareas -->
+<app-task-item
+  *ngFor="let tarea of tareas"
+  [tarea]="tarea"
+  (toggle)="toggle.emit($event)"
+  (eliminar)="eliminar.emit($event)">
+</app-task-item>

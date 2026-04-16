@@ -1,38 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { TaskService } from '../../../application/task.service.js';
-import { Task } from '../../../domain/task.model.js';
+import { Component } from '@angular/core';
+import { TaskService } from '../../../application/task.service';
+import { TaskFormComponent } from '../../components/task-form/task-form.component';
+import { TaskListComponent } from '../../components/task-list/task-list.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [TaskFormComponent, TaskListComponent],
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
-  tareas: Task[] = [];
+  constructor(public taskService: TaskService) {}
 
-  constructor(private taskService: TaskService) {}
-
-  ngOnInit(): void {
-    this.tareas = this.taskService.obtenerTodas();
+  agregarTarea(tarea: any) {
+    console.log('LLEGA:', tarea);
+    this.taskService.agregar(tarea);
   }
 
-  agregar(titulo: string, descripcion: string): void {
-    this.taskService.agregar(titulo, descripcion);
-    this.tareas = this.taskService.obtenerTodas();
-  }
-
-  eliminar(id: number): void {
-    this.taskService.eliminar(id);
-    this.tareas = this.taskService.obtenerTodas();
-  }
-
-  toggle(id: number): void {
+  toggleTarea(id: number) {
     this.taskService.toggle(id);
-    this.tareas = this.taskService.obtenerTodas();
+  }
+
+  eliminarTarea(id: number) {
+    this.taskService.eliminar(id);
   }
 }

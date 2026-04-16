@@ -1,11 +1,22 @@
 <div class="task-item">
 
   <div class="task-text">
-    <span class="title">{{ tarea.titulo }}</span>
-    <span class="description">{{ tarea.descripcion }}</span>
+
+    <span
+      class="title"
+      [class.completed]="tarea.completada"
+    >
+      {{ tarea.titulo }}
+    </span>
+
+    <span class="description">
+      {{ tarea.descripcion }}
+    </span>
+
   </div>
 
   <div class="task-actions">
+
     <button class="complete" (click)="onToggle()">
       {{ tarea.completada ? 'Deshacer' : 'Completar' }}
     </button>
@@ -13,6 +24,6 @@
     <button class="delete" (click)="onEliminar()">
       Eliminar
     </button>
-  </div>
 
+  </div>
 </div>
